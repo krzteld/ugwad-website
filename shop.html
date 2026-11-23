@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UGWAD Buri Shop | Handwoven Crafts</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- SHARED NAVIGATION BAR (Copy this to all pages) -->
+  <header class="navbar">
+    <div class="logo">UGWAD</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="learn.html">Learn to Weave</a>
+      <a href="shop.html">Shop</a>
+      <a href="my-orders.html">My Orders</a>
+    </nav>
+  </header>
+
+<main class="container">
+  <section class="section">
+    <h1 class="section-title">UGWAD Handwoven Buri Catalog</h1>
+    <p class="section-subtitle">
+      Authentic, eco-friendly buri palm crafts handwoven by artisans in San Francisco, Anini-y, Antique.
+    </p>
+
+    <!-- Search and Category Filter Controls -->
+    <div class="filter-bar">
+      <input
+        type="text"
+        id="searchInput"
+        class="form-control"
+        placeholder="Search buri mats, bags, decor..."
+        aria-label="Search buri products"
+      />
+      <select id="categoryFilter" class="form-control" aria-label="Filter by category">
+        <option value="All">All Categories</option>
+        <option value="Banig & Mats">Banig &amp; Mats</option>
+        <option value="Bags & Totes">Bags &amp; Totes</option>
+        <option value="Home Decor">Home Decor</option>
+        <option value="Dining & Crafts">Dining &amp; Crafts</option>
+      </select>
+    </div>
+
+    <!-- Product Grid (Populated automatically by js/shop.js from Supabase) -->
+    <div id="productGrid" class="product-grid">
+      <p>Loading handwoven buri products...</p>
+    </div>
+  </section>
+
+  <!-- Inline Officer Product Management Form (Create & Update) -->
+  <section class="section" id="manage-products">
+    <h2 class="section-title" id="formHeading">+ Add New Buri Product (UGWAD Officers)</h2>
+    <p class="section-subtitle">
+      Requires the official UGWAD officer passcode to add or edit catalog items.
+    </p>
+
+    <form id="productForm" class="card">
+      <input type="hidden" id="editProductId" value="" />
+
+      <div class="form-group">
+        <label for="productName">Product Name *</label>
+        <input
+          type="text"
+          id="productName"
+          class="form-control"
+          placeholder="e.g., Traditional Banig Sleeping Mat"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="productCategory">Category *</label>
+        <select id="productCategory" class="form-control" required>
+          <option value="Banig & Mats">Banig &amp; Mats</option>
+          <option value="Bags & Totes">Bags &amp; Totes</option>
+          <option value="Home Decor">Home Decor</option>
+          <option value="Dining & Crafts">Dining &amp; Crafts</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="productPrice">Price (₱) *</label>
+        <input
+          type="number"
+          id="productPrice"
+          class="form-control"
+          min="1"
+          step="0.01"
+          placeholder="e.g., 450"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="productDescription">Description *</label>
+        <textarea
+          id="productDescription"
+          class="form-control"
+          rows="3"
+          placeholder="Describe the size, weave pattern, or smoked buri finish..."
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="productImage">Product Photo (JPG/PNG)</label>
+        <input
+          type="file"
+          id="productImage"
+          class="form-control"
+          accept="image/*"
+        />
+        <small id="imageHelpText">Required when adding a new product. Leave blank when editing to keep the current photo.</small>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" id="submitProductBtn" class="btn btn-primary">
+          Save Product
+        </button>
+        <button type="button" id="cancelEditBtn" class="btn btn-secondary" style="display: none;">
+          Cancel Edit
+        </button>
+      </div>
+    </form>
+  </section>
+</main>
+
+   <footer class="footer">
+    <p>&copy; 2026 UGWAD Weaving Collective | Iloilo, Philippines</p>
+  </footer>
+
+  <!-- Replace line 127 with this exact script tag: -->
+  <script src="https://jsdelivr.net"></script>
+  <script src="js/config.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/shop.js"></script>
+
+
+</body>
+</html>
