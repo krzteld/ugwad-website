@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UGWAD | Checkout</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        :root {
+            --cream: #f7f1e5;
+            --beige: #e9ddc7;
+            --brown: #493421;
+            --green: #426b50;
+            --dark-green: #294b37;
+            --white: #fffdf8;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--brown);
+            font-family: Georgia, serif;
+            margin: 0;
+        }
+
+        .ugwad-header {
+            background: var(--white);
+            border-bottom: 1px solid var(--beige);
+            padding: 15px 5%;
+        }
+
+        .ugwad-nav {
+            max-width: 1150px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .ugwad-logo {
+            font-size: 27px;
+            font-weight: bold;
+            color: var(--brown);
+            text-decoration: none;
+        }
+
+        .ugwad-nav-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .ugwad-nav-links a {
+            color: var(--brown);
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .ugwad-nav-links a:hover,
+        .ugwad-nav-links a.active {
+            color: var(--green);
+            text-decoration: underline;
+        }
+
+        .page-container {
+            max-width: 1050px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .page-heading {
+            margin-bottom: 30px;
+        }
+
+        .page-heading h1 {
+            font-size: 35px;
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: #786b58;
+        }
+
+        .section-card {
+            background: var(--white);
+            border: 1px solid #d7c8ad;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 12px rgba(73,52,33,.06);
+        }
+
+        .section-card h2 {
+            color: var(--brown);
+            margin-top: 0;
+            border-bottom: 1px solid var(--beige);
+            padding-bottom: 15px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cdbda3;
+            border-radius: 6px;
+            background: white;
+            color: var(--brown);
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .radio-options {
+            display: flex;
+            gap: 25px;
+            margin: 15px 0;
+        }
+
+        .radio-options label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .radio-options input {
+            accent-color: var(--green);
+        }
+
+        .order-summary {
+            background: var(--cream);
+            padding: 20px;
+            border-radius: 9px;
+            margin: 20px 0;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 12px 0;
+        }
+
+        .summary-total {
+            border-top: 1px solid #cdbda3;
+            padding-top: 15px;
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .primary-btn {
+            background: var(--green);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 13px 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .primary-btn:hover {
+            background: var(--dark-green);
+        }
+
+        .primary-btn:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+        .secondary-btn {
+            background: var(--beige);
+            color: var(--brown);
+            border: none;
+            border-radius: 20px;
+            padding: 9px 17px;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .success-box {
+            background: #edf4eb;
+            border: 1px solid #b9d0b7;
+            padding: 22px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .order-code {
+            font-size: 25px;
+            font-weight: bold;
+            color: var(--dark-green);
+        }
+
+        .messenger-btn {
+            display: inline-block;
+            background: #087be8;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            margin-top: 10px;
+        }
+
+        .review-card {
+            background: var(--cream);
+            border: 1px solid #dfd2bd;
+            padding: 20px;
+            border-radius: 9px;
+            margin: 15px 0;
+        }
+
+        .review-card h3 {
+            margin: 0 0 8px;
+        }
+
+        .stars {
+            color: #c58b24;
+            font-size: 19px;
+        }
+
+        .review-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .review-actions button {
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--green);
+            text-decoration: underline;
+        }
+
+        .review-actions .delete-btn {
+            color: #9b3930;
+        }
+
+        .site-footer {
+            background: var(--brown);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+        }
+
+        @media(max-width: 650px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .ugwad-nav {
+                flex-direction: column;
+            }
+
+            .ugwad-nav-links {
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .section-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="ugwad-header">
+        <nav class="ugwad-nav">
+
+            <a href="index.html" class="ugwad-logo">
+                🌿 UGWAD
+            </a>
+
+            <div class="ugwad-nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="learn-to-weave.html">Learn to Weave</a>
+                <a href="shop.html">Shop Crafts</a>
+                <a href="my-orders.html">My Orders</a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <main class="page-container">
+
+        <div class="page-heading">
+            <h1>Complete Your Order</h1>
+            <p>
+                Thank you for supporting local Anini-y buri
+                weaving and handmade crafts.
+            </p>
+        </div>
+
+
+        <!-- CHECKOUT SECTION -->
+        <section class="section-card">
+
+            <h2>Order Information</h2>
+
+            <form id="checkoutForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+                        <label for="customerName">Customer Name</label>
+                        <input
+                            type="text"
+                            id="customerName"
+                            required
+                            placeholder="Enter your full name"
+                        >
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="productSelected">
+                            Select Your Product
+                        </label>
+
+                        <select id="productSelected" required>
+                            <option value="">Choose a product</option>
+
+                            <option value="Handwoven Smoked Buri Banig"
+                                data-price="850">
+                                Handwoven Smoked Buri Banig - ₱850
+                            </option>
+
+                            <option value="Anini-y Eco-Friendly Buri Gift Bag"
+                                data-price="250">
+                                Anini-y Eco-Friendly Buri Gift Bag - ₱250
+                            </option>
+
+                            <option value="Decorative Woven Banig Wall Panel"
+                                data-price="650">
+                                Decorative Woven Banig Wall Panel - ₱650
+                            </option>
+
+                            <option value="Smoked Buri Table Runner Set"
+                                data-price="450">
+                                Smoked Buri Table Runner Set - ₱450
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="quantity">Quantity</label>
+                        <input
+                            type="number"
+                            id="quantity"
+                            min="1"
+                            value="1"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <h3>Fulfillment Method</h3>
+
+                <div class="radio-options">
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="fulfillmentType"
+                            value="Pickup"
+                            checked
+                        >
+                        Pickup
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="fulfillmentType"
+                            value="Delivery"
+                        >
+                        Delivery
+                    </label>
+
+                </div>
+
+                <div id="shippingSection" class="form-group hidden">
+
+                    <label for="shippingRegion">
+                        Select Shipping Region
+                    </label>
+
+                    <select id="shippingRegion">
+                        <option value="">Choose region</option>
+                        <option value="Antique / Panay">
+                            Antique / Panay - ₱80
+                        </option>
+                        <option value="Visayas">Visayas - ₱120</option>
+                        <option value="Luzon">Luzon - ₱180</option>
+                        <option value="Mindanao">Mindanao - ₱200</option>
+                    </select>
+
+                </div>
+
+
+                <!-- ORDER SUMMARY -->
+                <div class="order-summary">
+
+                    <h3>Order Summary</h3>
+
+                    <div class="summary-row">
+                        <span>Product Subtotal</span>
+                        <span id="productSubtotal">₱0.00</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Shipping Fee</span>
+                        <span id="shippingFee">₱0.00</span>
+                    </div>
+
+                    <div class="summary-row summary-total">
+                        <span>Total Amount</span>
+                        <span id="totalAmount">₱0.00</span>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <label for="receiptFile">
+                        GCash Payment Receipt
+                    </label>
+
+                    <input
+                        type="file"
+                        id="receiptFile"
+                        accept="image/*"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="orderPin">
+                        Create Your 4-Digit Order PIN
+                    </label>
+
+                    <input
+                        type="password"
+                        id="orderPin"
+                        maxlength="4"
+                        inputmode="numeric"
+                        pattern="[0-9]{4}"
+                        placeholder="Enter 4-digit PIN"
+                        required
+                    >
+
+                    <small>
+                        Keep your PIN and order code safe.
+                    </small>
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                    id="placeOrderBtn"
+                >
+                    Place Order
+                </button>
+
+            </form>
+
+
+            <!-- ORDER CONFIRMATION -->
+            <div id="orderResult" class="hidden"></div>
+
+        </section>
+
+
+        <!-- REVIEWS SECTION -->
+        <section class="section-card" id="reviewsSection">
+
+            <h2>Share Your Experience</h2>
+
+            <p>
+                We value your feedback! Tell us about your
+                experience with our handmade products.
+            </p>
+
+            <form id="reviewForm">
+
+                <div class="form-group">
+                    <label for="reviewerName">Your Name</label>
+                    <input
+                        type="text"
+                        id="reviewerName"
+                        required
+                        placeholder="Enter your name"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="reviewProduct">
+                        Product Purchased
+                    </label>
+
+                    <select id="reviewProduct" required>
+                        <option value="">Choose a product</option>
+
+                        <option>Handwoven Smoked Buri Banig</option>
+                        <option>Anini-y Eco-Friendly Buri Gift Bag</option>
+                        <option>Decorative Woven Banig Wall Panel</option>
+                        <option>Smoked Buri Table Runner Set</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="reviewRating">Star Rating</label>
+
+                    <select id="reviewRating" required>
+                        <option value="">Select rating</option>
+                        <option value="5">★★★★★ - Excellent</option>
+                        <option value="4">★★★★ - Very Good</option>
+                        <option value="3">★★★ - Good</option>
+                        <option value="2">★★ - Fair</option>
+                        <option value="1">★ - Poor</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="reviewComment">Your Comment</label>
+
+                    <textarea
+                        id="reviewComment"
+                        rows="4"
+                        required
+                        placeholder="Write your experience here..."
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="reviewPin">
+                        Create Your 4-Digit Review PIN
+                    </label>
+
+                    <input
+                        type="password"
+                        id="reviewPin"
+                        maxlength="4"
+                        inputmode="numeric"
+                        pattern="[0-9]{4}"
+                        required
+                        placeholder="Enter 4-digit PIN"
+                    >
+                </div>
+
+                <button type="submit" class="primary-btn">
+                    Submit Review
+                </button>
+
+            </form>
+
+            <hr style="border:0;border-top:1px solid #dfd2bd;margin:30px 0;">
+
+            <h2>What Our Customers Say</h2>
+
+            <div id="reviewsList">
+                <p>Loading customer reviews...</p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="site-footer">
+        <h3>UGWAD</h3>
+        <p>Preserving Heritage, One Weave at a Time.</p>
+        <p>&copy; 2026 UGWAD. All Rights Reserved.</p>
+    </footer>
+
+
+    <!-- SUPABASE AND PROJECT SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/reviews.js"></script>
+
+</body>
+</html>
