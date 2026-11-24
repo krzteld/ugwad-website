@@ -99,7 +99,7 @@ h1, h2, h3, .logo {
 /* Hero Banner Section */
 .hero {
   background: linear-gradient(rgba(43, 33, 24, 0.72), rgba(62, 42, 30, 0.80)),
-    url('../images/hero-buri.png') center/cover no-repeat;
+    url('../images/hero-buri.jpg') center/cover no-repeat;
   color: #FAF3E6;
   padding: 55px 30px;
   border-radius: 14px;
