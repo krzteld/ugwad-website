@@ -6,7 +6,7 @@
 const db = window.supabaseClient;
 
 // Replace with the real UGWAD Messenger page.
-const MESSENGER_URL = "https://m.me/YOUR_PAGE_USERNAME";
+const MESSENGER_URL = "https://www.facebook.com/share/14wfY7CDgED/?mibextid=wwXIfr";
 
 // Shipping fees
 const shippingRates = {
