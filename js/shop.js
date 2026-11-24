@@ -231,7 +231,7 @@ async function deleteProduct(id, productName) {
   // Trigger mandatory confirmation dialog from Member 5's validation.js
   if (!confirmDelete(productName)) return;
 
-  const { error } = await supabaseClient
+ const { error } = await db
     .from('products')
     .delete()
     .eq('id', id);
@@ -244,3 +244,4 @@ async function deleteProduct(id, productName) {
 
   alert(`"${productName}" has been deleted.`);
   fetchProducts();
+}
