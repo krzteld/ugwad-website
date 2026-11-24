@@ -1,6 +1,4 @@
-import { supabaseClient } from './supabase.js';
-import { validateRequiredFields, validateNumberRange, confirmDelete, verifyOrgPasscode } from './validation.js';
-import { uploadImageToCloudinary } from './cloudinary.js';
+const db = window.supabaseClient;
 
 let allProducts = [];
 let editingProductId = null;
