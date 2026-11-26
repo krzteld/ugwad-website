@@ -23,7 +23,7 @@ async function loadReviews() {
 
         const { data: reviews, error } = await reviewsDB
             .from("reviews")
-            .select("id, reviewer_name, product, rating, comment, created_at")
+            .select("id, reviewer_name, product_purchased, rating, comment, created_at")
             .order("created_at", { ascending: false });
 
         if (error) throw error;
@@ -52,7 +52,7 @@ async function loadReviews() {
 
             // Product
             const product = document.createElement("p");
-            product.textContent = "Product: " + review.product;
+            product.textContent = "Product: " + review.product_purchased;
 
 
             // Star rating
@@ -219,7 +219,7 @@ reviewForm.addEventListener("submit", async function(event) {
         const reviewData = {
 
             reviewer_name: reviewerName,
-            product: product,
+            product_purchased: product,
             rating: rating,
             comment: comment,
             review_pin: reviewPin
