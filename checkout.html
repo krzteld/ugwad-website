@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -350,30 +350,10 @@
                             Select Your Product
                         </label>
 
-                        <select id="productSelected" required>
-                            <option value="">Choose a product</option>
-
-                            <option value="Handwoven Smoked Buri Banig"
-                                data-price="850">
-                                Handwoven Smoked Buri Banig - ₱850
-                            </option>
-
-                            <option value="Anini-y Eco-Friendly Buri Gift Bag"
-                                data-price="250">
-                                Anini-y Eco-Friendly Buri Gift Bag - ₱250
-                            </option>
-
-                            <option value="Decorative Woven Banig Wall Panel"
-                                data-price="650">
-                                Decorative Woven Banig Wall Panel - ₱650
-                            </option>
-
-                            <option value="Smoked Buri Table Runner Set"
-                                data-price="450">
-                                Smoked Buri Table Runner Set - ₱450
-                            </option>
-
-                        </select>
+                      
+         <select id="productSelect" name="productSelect" required>
+              <option value="">-- Loading woven products... --</option>
+            </select>
                     </div>
 
                     <div class="form-group full">
@@ -535,14 +515,9 @@
                         Product Purchased
                     </label>
 
-                    <select id="reviewProduct" required>
-                        <option value="">Choose a product</option>
-
-                        <option>Handwoven Smoked Buri Banig</option>
-                        <option>Anini-y Eco-Friendly Buri Gift Bag</option>
-                        <option>Decorative Woven Banig Wall Panel</option>
-                        <option>Smoked Buri Table Runner Set</option>
-                    </select>
+                   <select id="reviewProduct" name="reviewProduct" required>
+                      <option value="">-- Loading woven products... --</option>
+                        </select>
                 </div>
 
                 <div class="form-group">
@@ -604,12 +579,12 @@
     </main>
 
 
-   <footer class="footer">
-  <p>&copy; 2026 UGWAD — Buri Weavers Association | San Francisco, Anini-y, Antique</p>
-  <p style="font-size: 0.85rem; margin-top: 0.35rem;">
-    Cultural &amp; Historical Sources: <em>Buri Weaving in Anini-y, Antique</em> (Buri Weavers Association, San Francisco, Anini-y, Antique) &bull; NCCA Intangible Cultural Heritage &amp; DTI Antique Handloom Documentation.
-  </p>
-</footer>
+  <footer class="footer">
+    <p>&copy; 2026 UGWAD Buri Weavers Association — San Francisco, Anini-y, Antique.</p>
+    <p style="margin-top: 6px; font-size: 0.82rem;">
+      Cultural Sources: Community Weaver Interviews, DOLE, LGU Anini-y &amp; Antique Provincial Tourism Office.
+    </p>
+  </footer>
 
     <!-- SUPABASE AND PROJECT SCRIPTS -->
     <script src="https://unpkg.com"></script>
