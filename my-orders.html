@@ -9,16 +9,18 @@
 <body>
 
   <header class="navbar">
-    <div class="logo">UGWAD</div>
-    <nav>
+    <a href="index.html" class="logo">
+      <img src="images/logo-buri.png" alt="UGWAD Buri Weavers Logo" />
+      UGWAD
+    </a>
+    <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="learn.html">Learn to Weave</a>
       <a href="shop.html">Shop</a>
-      <a href="my-orders.html">My Orders</a>
-    </nav> 
+      <a href="my-orders.html" class="active">My Orders</a>
+    </nav>
   </header>
-
   <main class="container" style="padding: 2rem 1rem;">
     <h1>Track & Manage Orders</h1>
     <p>Search your Order Code to check weaving progress, or filter by status (UGWAD Officers).</p>
@@ -49,10 +51,12 @@
     </div>
   </main>
 
-    <footer class="footer">
-    <p>&copy; 2026 UGWAD Weaving Collective | Iloilo, Philippines</p>
+   <footer class="footer">
+    <p>&copy; 2026 UGWAD — Buri Weavers Association | San Francisco, Anini-y, Antique</p>
+    <p style="font-size: 0.85rem; margin-top: 0.35rem;">
+      Cultural &amp; Historical Sources: <em>Buri Weaving in Anini-y, Antique</em> (Buri Weavers Association, San Francisco, Anini-y, Antique) &bull; NCCA Intangible Cultural Heritage &amp; DTI Antique Handloom Documentation.
+    </p>
   </footer>
-
 
   <!-- Scripts in exact required order -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
