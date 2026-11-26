@@ -189,9 +189,12 @@ checkoutForm.addEventListener("submit", async function(event) {
 
 
         // Required field validation
-        if (typeof validateRequiredFields === "function") {
-            if (validateRequiredFields() === false) return;
-        }
+      if (typeof validateRequiredFields === "function") {
+    if (!validateRequiredFields({
+        "Customer Name": customerName,
+        "Product": product
+    })) return;
+}
 
         if (!customerName || !product || !receiptFile) {
             alert("Please complete all required fields.");
