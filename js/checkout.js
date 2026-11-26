@@ -20,6 +20,7 @@ const shippingRates = {
 // HTML elements
 const checkoutForm = document.getElementById("checkoutForm");
 const productSelected = document.getElementById("productSelected");
+const productDisplay = document.getElementById("productDisplay");
 const quantityInput = document.getElementById("quantity");
 
 const shippingSection = document.getElementById("shippingSection");
@@ -37,11 +38,7 @@ const orderResult = document.getElementById("orderResult");
 // ==========================================
 
 function getProductPrice() {
-
-    const option =
-        productSelected.options[productSelected.selectedIndex];
-
-    return Number(option?.dataset.price) || 0;
+    return Number(productSelected.dataset.price) || 0;
 }
 
 
@@ -413,22 +410,34 @@ checkoutForm.addEventListener("submit", async function(event) {
 // 7. PRODUCT FROM URL
 // ==========================================
 
-const params = new URLSearchParams(window.location.search);
+async function loadSelectedProduct() {
+    const name = new URLSearchParams(window.location.search).get("product");
 
-const productFromURL = params.get("product");
-
-if (productFromURL) {
-
-    const matchingOption = Array.from(productSelected.options)
-        .find(option =>
-            option.value.toLowerCase() === productFromURL.toLowerCase()
-        );
-
-    if (matchingOption) {
-        productSelected.value = matchingOption.value;
+    if (!name) {
+        alert("No product selected. Please choose an item from the shop.");
+        window.location.href = "shop.html";
+        return;
     }
+
+    const { data, error } = await db
+        .from("products")
+        .select("name, price")
+        .eq("name", name)
+        .maybeSingle();
+
+    if (error || !data) {
+        alert("Product not found. Please choose an item from the shop.");
+        window.location.href = "shop.html";
+        return;
+    }
+
+    productSelected.value = data.name;
+    productSelected.dataset.price = data.price;
+    productDisplay.value = data.name + " (₱" + Number(data.price).toFixed(2) + ")";
+    calculateTotal();
 }
 
+loadSelectedProduct();
 
 // Initial calculation
 calculateTotal();
