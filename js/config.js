@@ -2,7 +2,7 @@
 
 const CONFIG = {
   // 1. Supabase Credentials (Found in Supabase: Project Settings > API)
-  SUPABASE_URL: "https://nosjmgfouvvhmpzpbyqm.supabase.co/rest/v1/",
+  SUPABASE_URL: "https://nosjmgfouvvhmpzpbyqm.supabase.co",
   SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vc2ptZ2ZvdXZ2aG1wenBieXFtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ5Mjc4MjAsImV4cCI6MjExMDUwMzgyMH0.VFpwE126fCc9iRRgB4tv236Uc4EhiFJyCUiI3_rDOOg",
 
   // 2. Cloudinary Credentials (Found in Cloudinary Dashboard & Upload Presets)
