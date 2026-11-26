@@ -14,10 +14,10 @@ const CONFIG = {
 };
 
 // Initialize the global Supabase client for Members 2, 3, and 4 to use
-const supabaseClient = window.supabase.createClient(
-  CONFIG.SUPABASE_URL,
-  CONFIG.SUPABASE_ANON_KEY
-);
+const supabaseClient = window.supabase
+  ? window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY)
+  : null;
+window.supabaseClient = supabaseClient;
 
 // Helper function to upload product photos or GCash receipts to Cloudinary
 async function uploadImageToCloudinary(file) {
