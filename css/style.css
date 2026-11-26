@@ -1,5 +1,6 @@
 @import url('https://googleapis.com');
 
+
 :root {
   --bg-cream: #F7F3EB;
   --surface-white: #FFFFFF;
@@ -66,7 +67,7 @@ h1, h2, h3, .logo {
   padding: 3px;
   border: 2px solid var(--rattan-gold);
 }
-}
+
 
 .navbar nav {
   display: flex;
