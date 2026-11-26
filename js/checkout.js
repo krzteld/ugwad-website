@@ -289,7 +289,7 @@ checkoutForm.addEventListener("submit", async function(event) {
         const orderData = {
 
             customer_name: customerName,
-            product: product,
+            product_name: product,
             quantity: quantity,
             fulfillment_type: fulfillmentType,
             shipping_region: region,
