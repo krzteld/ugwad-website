@@ -26,15 +26,7 @@ A cultural heritage and e-commerce web application built to preserve, showcase, 
 2. Open `js/config.js` and ensure `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and `ORG_PASSCODE` are configured.
 3. Serve the folder using VS Code **Live Server** (or any local HTTP server) and open `index.html`.
 
-## Team Roles (CC 201)
 
-| Role | Member Name | Responsibilities |
-| :--- | :--- | :--- |
-| Member 1 | *[Angielene Kristel De Juan]* | Cultural Research, `index.html`, `about.html`, `learn.html`, Global Styling (`css/style.css`) |
-| Member 2 | *[Arrah Faith Sutacio]* | Product Catalog (`shop.html`, `js/shop.js`), Supabase `products` CRUD |
-| Member 3 | *[Destine Mae Barrios]* | Checkout Flow & Reviews (`checkout.html`, `js/checkout.js`, `js/reviews.js`) |
-| Member 4 | *[Zuleyka Toliles* | Order Tracking (`my-orders.html`, `js/orders.js`) & Form Validation (`js/validation.js`) |
-| Member 5 | *[Honey Pearl Rubite]* | Database Schema/Backup, GitHub & Vercel Deployment, End-to-End QA Testing & Documentation (`README.md`) |
 
 
 ## Cultural & Historical Credits
