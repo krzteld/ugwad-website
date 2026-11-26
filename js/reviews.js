@@ -267,8 +267,7 @@ async function verifyReviewPIN(review) {
         return false;
     }
 
-    const adminPIN =
-        window.CONFIG?.ORG_PASSCODE;
+    const adminPIN = typeof CONFIG !== "undefined" ? CONFIG.ORG_PASSCODE : null;
 
     // Organization administrator
     if (adminPIN && enteredPIN === adminPIN) {
