@@ -107,10 +107,9 @@ function renderOrderCards(orders) {
             </span>
           </div>
 
-          <p><strong>Product:</strong> ${order.product_name || "Woven Item"} (Qty: ${order.quantity || 1})</p>
+          <p><strong>Product:</strong> ${order.product || order.product_name || "Woven Item"} (Qty: ${order.quantity || 1})</p>
           <p><strong>Total Amount:</strong> ${totalFormatted}</p>
-          <p><strong>Fulfillment:</strong> ${order.fulfillment_type || "Pickup"} ${order.delivery_address ? `— ${order.delivery_address}` : ""}</p>
-          <p><strong>Contact:</strong> ${order.contact_number || "N/A"}</p>
+          <p><strong>Fulfillment:</strong> ${order.fulfillment_type || "Pickup"} (${order.shipping_region || "N/A"})</p>
           ${receiptHtml}
 
           ${!isPending ? customerSection : ""}
