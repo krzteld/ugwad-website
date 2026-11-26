@@ -7,7 +7,7 @@ let editingProductId = null;
 const productGrid = document.getElementById('productGrid');
 const productForm = document.getElementById('productForm');
 const formTitle = document.getElementById('formTitle');
-const submitBtn = document.getElementById('submitBtn');
+const submitBtn = document.getElementById('submitBtn') || productForm?.querySelector('button[type="submit"]');
 const cancelEditBtn = document.getElementById('cancelEditBtn');
 const searchInput = document.getElementById('searchInput');
 const categoryFilter = document.getElementById('categoryFilter');
@@ -34,7 +34,7 @@ async function fetchProducts() {
   if (!productGrid) return;
   productGrid.innerHTML = '<p>Loading handcrafted buri products...</p>';
 
-  const { data, error } = await supabaseClient
+  const { data, error } = await db
     .from('products')
     .select('*')
     .order('created_at', { ascending: false });
@@ -77,27 +77,24 @@ function renderProducts(products) {
       (product) => `
       <div class="product-card" data-id="${product.id}">
         <img 
-          src="${product.image_url || 'images/placeholder-buri.jpg'}" 
+          src="${product.image_url || 'images/hero-buri.jpg'}" 
           alt="Handwoven ${product.name} made from buri palm leaves in Anini-y, Antique"
           class="product-img"
         />
         <div class="product-info">
           <span class="badge">${product.category}</span>
           <h3>${product.name}</h3>
-          <p class="price">₱${Number(product.price).toFixed(2)}</p>
+          <p class="price-tag">₱${Number(product.price).toFixed(2)}</p>
           <p class="description">${product.description || ''}</p>
           
-          <div class="card-actions">
-            <!-- Sends selected product to Member 3's order page -->
-            <a href="order.html?product_id=${product.id}&product_name=${encodeURIComponent(product.name)}&price=${product.price}" class="btn btn-primary">
+          <div class="card-actions" style="display:flex; gap:8px; flex-wrap:wrap; margin-top:12px;">
+            <a href="checkout.html?product=${encodeURIComponent(product.name)}" class="btn-primary">
               Order Now
             </a>
-            
-            <!-- Inline Management Buttons (Passcode Protected) -->
-            <button type="button" class="btn btn-secondary" onclick="startEditProduct('${product.id}')">
+            <button type="button" class="btn-secondary" onclick="startEditProduct('${product.id}')">
               Edit
             </button>
-            <button type="button" class="btn btn-danger" onclick="deleteProduct('${product.id}', '${product.name.replace(/'/g, "\\'")}')">
+            <button type="button" class="btn-danger" onclick="deleteProduct('${product.id}', '${product.name.replace(/'/g, "\\'")}')">
               Delete
             </button>
           </div>
@@ -125,17 +122,19 @@ async function handleFormSubmit(e) {
   const file = imageInput?.files[0];
 
   // Validate inputs using Member 5's validation.js helpers
-  const isFilled = validateRequiredFields([
-    { name: 'Product Name', value: name },
-    { name: 'Category', value: category },
-    { name: 'Description', value: description },
-  ]);
+  const isFilled = validateRequiredFields({
+    'Product Name': name,
+    'Category': category,
+    'Description': description,
+  });
   if (!isFilled) return;
 
   if (!validateNumberRange('Price', price, 1)) return;
 
-  submitBtn.disabled = true;
-  submitBtn.textContent = editingProductId ? 'Updating...' : 'Saving...';
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = editingProductId ? 'Updating...' : 'Saving...';
+  }
 
   try {
     let imageUrl = document.getElementById('existingImageUrl')?.value || '';
@@ -155,7 +154,7 @@ async function handleFormSubmit(e) {
 
     if (editingProductId) {
       // 3. UPDATE existing product
-      const { error } = await supabaseClient
+      const { error } = await db
         .from('products')
         .update(payload)
         .eq('id', editingProductId);
@@ -164,7 +163,7 @@ async function handleFormSubmit(e) {
       alert('Product updated successfully!');
     } else {
       // 2. CREATE new product
-      const { error } = await supabaseClient
+      const { error } = await db
         .from('products')
         .insert([payload]);
 
@@ -178,8 +177,10 @@ async function handleFormSubmit(e) {
     console.error('Save failed:', err);
     alert('Error saving product: ' + err.message);
   } finally {
-    submitBtn.disabled = false;
-    submitBtn.textContent = editingProductId ? 'Update Product' : 'Add Product';
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = editingProductId ? 'Update Product' : 'Add Product';
+    }
   }
 }
 
@@ -231,7 +232,7 @@ async function deleteProduct(id, productName) {
   // Trigger mandatory confirmation dialog from Member 5's validation.js
   if (!confirmDelete(productName)) return;
 
- const { error } = await db
+  const { error } = await db
     .from('products')
     .delete()
     .eq('id', id);
