@@ -345,16 +345,11 @@
                         >
                     </div>
 
-                    <div class="form-group full">
-                        <label for="productSelected">
-                            Select Your Product
-                        </label>
-
-                      
-         <select id="productSelect" name="productSelect" required>
-              <option value="">-- Loading woven products... --</option>
-            </select>
-                    </div>
+                  <div class="form-group full">
+    <label for="productDisplay">Your Product</label>
+    <input type="text" id="productDisplay" class="form-control" readonly />
+    <input type="hidden" id="productSelected" value="" />
+                </div>
 
                     <div class="form-group full">
                         <label for="quantity">Quantity</label>
