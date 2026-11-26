@@ -6,8 +6,8 @@ let editingProductId = null;
 // DOM Elements
 const productGrid = document.getElementById('productGrid');
 const productForm = document.getElementById('productForm');
-const formTitle = document.getElementById('formTitle');
-const submitBtn = document.getElementById('submitBtn') || productForm?.querySelector('button[type="submit"]');
+const formTitle = document.getElementById('formHeading');
+const submitBtn = document.getElementById('submitProductBtn');
 const cancelEditBtn = document.getElementById('cancelEditBtn');
 const searchInput = document.getElementById('searchInput');
 const categoryFilter = document.getElementById('categoryFilter');
