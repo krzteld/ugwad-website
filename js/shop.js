@@ -130,7 +130,7 @@ async function handleFormSubmit(e) {
   if (!isFilled) return;
 
   if (!validateNumberRange('Price', price, 1)) return;
-
+  if (!editingProductId && !file) { alert('Please upload a product photo.'); return; }
   if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.textContent = editingProductId ? 'Updating...' : 'Saving...';
