@@ -426,5 +426,28 @@ async function deleteReview(review) {
 // ==========================================
 // 6. LOAD REVIEWS WHEN PAGE OPENS
 // ==========================================
+async function loadReviewProducts() {
+    const select = document.getElementById("reviewProduct");
 
+    if (!select || !reviewsDB) return;
+
+    const { data, error } = await reviewsDB
+        .from("products")
+        .select("name")
+        .order("name", { ascending: true });
+
+    if (error) {
+        console.error("Loading review products error:", error);
+        select.innerHTML = '<option value="">Could not load products</option>';
+        return;
+    }
+
+    select.innerHTML = "";
+    select.add(new Option("-- Select product --", ""));
+
+    (data || []).forEach(function(item) {
+        select.add(new Option(item.name, item.name));
+    });
+}
+loadReviewProducts();
 loadReviews();
