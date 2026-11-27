@@ -246,3 +246,45 @@ async function deleteProduct(id, productName) {
   alert(`"${productName}" has been deleted.`);
   fetchProducts();
 }
+
+// ==========================================
+// 5. IMAGE LIGHTBOX (click a photo to enlarge)
+// ==========================================
+const lightbox = document.createElement('div');
+lightbox.className = 'lightbox';
+lightbox.innerHTML =
+  '<button type="button" class="lightbox-close" aria-label="Close photo">&times;</button>' +
+  '<img class="lightbox-img" alt="" />';
+document.body.appendChild(lightbox);
+
+const lightboxImg = lightbox.querySelector('.lightbox-img');
+
+function openLightbox(src, alt) {
+  lightboxImg.src = src;
+  lightboxImg.alt = alt || '';
+  lightbox.classList.add('open');
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  lightboxImg.src = '';
+}
+
+// Click a product photo to open it
+if (productGrid) {
+  productGrid.addEventListener('click', (e) => {
+    const img = e.target.closest('.product-img');
+    if (img) openLightbox(img.src, img.alt);
+  });
+}
+
+// Close with the X button, by clicking the dark background, or with the Esc key
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+    closeLightbox();
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLightbox();
+});
